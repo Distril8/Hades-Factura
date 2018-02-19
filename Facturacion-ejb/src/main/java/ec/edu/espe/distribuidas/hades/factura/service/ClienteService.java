@@ -7,6 +7,9 @@ package ec.edu.espe.distribuidas.hades.factura.service;
 
 import ec.edu.espe.distribuidas.hades.factura.dao.ClienteFacade;
 import ec.edu.espe.distribuidas.hades.factura.model.Cliente;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -43,5 +46,14 @@ public class ClienteService  {
         Cliente cliente = this.clienteFacade.find(codigo);
         this.clienteFacade.remove(cliente);
     }
+    
+    /*public Integer obtenerEdad(Cliente cliente) {
+       
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaNacimiento = LocalDate.parse((CharSequence)cliente.getFechaNacimiento(),fmt);
+        LocalDate fechaActual = LocalDate.now();
+        Period periodo = Period.between(fechaNacimiento, fechaActual); 
+        return periodo.getYears();
+    }*/
 
 }

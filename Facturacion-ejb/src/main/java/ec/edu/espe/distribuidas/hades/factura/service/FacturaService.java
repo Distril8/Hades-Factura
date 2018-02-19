@@ -6,7 +6,12 @@
 package ec.edu.espe.distribuidas.hades.factura.service;
 
 import ec.edu.espe.distribuidas.hades.factura.dao.FacturaFacade;
+import ec.edu.espe.distribuidas.hades.factura.model.Cliente;
 import ec.edu.espe.distribuidas.hades.factura.model.Factura;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -40,5 +45,20 @@ public class FacturaService {
     public void eliminar(String codigo) {
         Factura cliente = this.facturaFacade.find(codigo);
         this.facturaFacade.remove(cliente);
+    }
+    
+    public void obtenerEdad(Cliente cliente, Factura factura) {
+       
+        //Integer edad;
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaNacimiento = LocalDate.parse((CharSequence)cliente.getFechaNacimiento(),fmt);
+        LocalDate fechaActual = LocalDate.now();
+        Period periodo = Period.between(fechaNacimiento, fechaActual); 
+        //edad= periodo.getYears();
+        if (periodo.getYears() >65)
+        {
+           factura.setTotalImpuestos(BigDecimal.ZERO);
+           factura.setDescuento(BigDecimal.valueOf(0.15));
+        }
     }
 }
