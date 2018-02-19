@@ -12,8 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -22,8 +20,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "factura_detalle")
-@NamedQueries({
-    @NamedQuery(name = "FacturaDetalle.findAll", query = "SELECT f FROM FacturaDetalle f")})
 public class FacturaDetalle implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +48,7 @@ public class FacturaDetalle implements Serializable {
     
     @JoinColumn(name = "COD_FACTURA", referencedColumnName = "COD_FACTURA",insertable = false, updatable = false)
     @ManyToOne
-    private Factura codigo;
+    private Factura factura;
 
     public FacturaDetalle() {
     }
@@ -118,11 +114,11 @@ public class FacturaDetalle implements Serializable {
     }
 
     public Factura getCodigo() {
-        return codigo;
+        return factura;
     }
 
     public void setCodigo(Factura codigo) {
-        this.codigo = codigo;
+        this.factura = codigo;
     }
 
     @Override
@@ -147,7 +143,7 @@ public class FacturaDetalle implements Serializable {
 
     @Override
     public String toString() {
-        return "FacturaDetalle{" + "secDetalle=" + secDetalle + ", codProducto=" + codProducto + ", descripcion=" + descripcion + ", valorUnitario=" + valorUnitario + ", cantidad=" + cantidad + ", descuento=" + descuento + ", valorFinal=" + valorFinal + ", codigo=" + codigo + '}';
+        return "FacturaDetalle{" + "secDetalle=" + secDetalle + ", codProducto=" + codProducto + ", descripcion=" + descripcion + ", valorUnitario=" + valorUnitario + ", cantidad=" + cantidad + ", descuento=" + descuento + ", valorFinal=" + valorFinal + ", codigo=" + factura + '}';
     }
 
 }

@@ -31,7 +31,6 @@ public class Factura implements Serializable {
     @Column(name = "RUC", nullable=false, length=13)
     private String ruc;
     
-   
     @Column(name = "FECHA_CREACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
