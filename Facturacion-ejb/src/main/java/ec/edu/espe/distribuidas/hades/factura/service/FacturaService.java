@@ -47,14 +47,12 @@ public class FacturaService {
         this.facturaFacade.remove(cliente);
     }
     
-    public void obtenerEdad(Cliente cliente, Factura factura) {
+    public void verificarEdad(Cliente cliente, Factura factura) {
        
-        //Integer edad;
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaNacimiento = LocalDate.parse((CharSequence)cliente.getFechaNacimiento(),fmt);
         LocalDate fechaActual = LocalDate.now();
         Period periodo = Period.between(fechaNacimiento, fechaActual); 
-        //edad= periodo.getYears();
         if (periodo.getYears() >65)
         {
            factura.setTotalImpuestos(BigDecimal.ZERO);
